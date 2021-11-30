@@ -195,7 +195,7 @@ function apartado_g(h2)
 
     subplot(3,1,3);
     stem(get_ns(y_g2), y_g2);
-    set_ticks_and_title(x_ticks, y_big_ticks, 'y_{g1}[n] = x_g[n] * (h_{g1}[n] + h_{g2}[n])');
+    set_ticks_and_title(x_ticks, y_big_ticks, 'y_{g2}[n] = x_g[n] * (h_{g1}[n] + h_{g2}[n])');
 end
 
 
