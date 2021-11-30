@@ -10,7 +10,9 @@ h2 = [0 2 5 4 -1];
 %apartado_c(x, h1, h2);
 %apartado_d(x, h1, h2);
 %apartado_e(x, h1, 2);
-apartado_f(x, h1);
+%apartado_f(x, h1);
+apartado_g(h2)
+
 
 function apartado_a(nx, x, nh1, h1, nh2, h2)
     x_ticks = linspace(-50,50,101);
@@ -158,42 +160,42 @@ function apartado_g(h2)
     xg = [2 zeros(1, 4)];
 
     y_ga = xg .^ 2;
-    y_gb = conv(xg, h2)
-    y_g1 = y_ga + y_gb %Hace falta extender uno de los vectores
+    y_gb = conv(xg, h2);
+    y_g1 = [y_ga zeros(1,4)] + y_gb;
 
     h_g1 = [1 zeros(1,4)] .^ 2;
-    h_parallel = h_g1 + h_g2;
-    y_g2 = conv(xg, h_parallel)
+    h_parallel = h_g1 + h2;
+    y_g2 = conv(xg, h_parallel);
 
     subplot(1,1,1);
     stem(get_ns(xg), xg);
-    set_ticks_and_title(x_ticks, y_ticks, 'xg[n]');
+    set_ticks_and_title(x_ticks, y_ticks, 'x_g[n]');
     
     figure();
     subplot(3,1,1);
     stem(get_ns(y_ga), y_ga);
-    set_ticks_and_title(x_ticks, y_ticks, 'y_ga[n] = xg[n] .^ 2');
+    set_ticks_and_title(x_ticks, y_ticks, 'y_{ga}[n] = x_g[n]^2');
 
     subplot(3,1,2);
     stem(get_ns(y_gb), y_gb);
-    set_ticks_and_title(x_ticks, y_ticks, 'y_gb[n] = xg[n] * h2[n]');
+    set_ticks_and_title(x_ticks, y_big_ticks, 'y_{gb}[n] = x_g[n] * h_2[n]');
 
     subplot(3,1,3);
     stem(get_ns(y_g1), y_g1);
-    set_ticks_and_title(x_ticks, y_ticks, 'y_g1[n] = ');
+    set_ticks_and_title(x_ticks, y_big_ticks, 'y_{g1}[n] = x_g[n]^2 + x_g[n] * h_2[n]');
 
     figure();
     subplot(3,1,1);
     stem(get_ns(h_g1), h_g1);
-    set_ticks_and_title(x_ticks, y_ticks, 'h_g_1');
+    set_ticks_and_title(x_ticks, y_ticks, 'h_{g1}[n]');
 
     subplot(3,1,2);
-    stem(get_ns(hg_parallel), hg_parallel);
-    set_ticks_and_title(x_ticks, y_ticks, 'h_f_1 + h_f_2');
+    stem(get_ns(h_parallel), h_parallel);
+    set_ticks_and_title(x_ticks, y_big_ticks, 'h_{parallel}[n] = h_{g1}[n] + h_{g2}[n]');
 
     subplot(3,1,3);
     stem(get_ns(y_g2), y_g2);
-    set_ticks_and_title(x_ticks, y_ticks, 'y_f_2 =  x * (h_f_1 * h_f_2)');
+    set_ticks_and_title(x_ticks, y_big_ticks, 'y_{g1}[n] = x_g[n] * (h_{g1}[n] + h_{g2}[n])');
 end
 
 
