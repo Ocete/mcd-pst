@@ -21,8 +21,7 @@ function plot_windows_comparative(w, N, L)
     j = sqrt(-1);
     index = [0:L-1];
     x = exp(j*w*index);
-    x_hanning = hanning(L, 'periodic') .* x;
-
+    x_hanning = hamm(L, 'periodic')' .* x;
 
     %hanning_window = hanning(2*L+1, 'periodic');
     %x_hanning = hanning_window(L+1:2*L+1) .* x;
@@ -34,7 +33,7 @@ function plot_windows_comparative(w, N, L)
 end
 
 function plot_hanning(N, L)
-    x = hanning(L, 'periodic');
+    x = hamm(L, 'periodic')';
     plot_dtft_amp(x, N, ...
         strcat('hanning[n], L=', int2str(L)));
 end
