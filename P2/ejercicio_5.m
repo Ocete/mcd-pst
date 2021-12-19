@@ -13,6 +13,8 @@ w_0 = 2*pi/sqrt(31);
 %plot_rectangular(N, 256);
 
 % APARTADO C
+% Este último apartado hace falta ejecutarlo
+% en Matlab online. 
 plot_hanning(N, 32);
 plot_rectangular(N, 32);
 plot_windows_comparative(w_0, N, 32);
@@ -21,7 +23,7 @@ function plot_windows_comparative(w, N, L)
     j = sqrt(-1);
     index = [0:L-1];
     x = exp(j*w*index);
-    x_hanning = hamm(L, 'periodic')' .* x;
+    x_hanning = hann(L, 'periodic')' .* x;
 
     %hanning_window = hanning(2*L+1, 'periodic');
     %x_hanning = hanning_window(L+1:2*L+1) .* x;
@@ -33,7 +35,7 @@ function plot_windows_comparative(w, N, L)
 end
 
 function plot_hanning(N, L)
-    x = hamm(L, 'periodic')';
+    x = hann(L, 'periodic')';
     plot_dtft_amp(x, N, ...
         strcat('hanning[n], L=', int2str(L)));
 end
